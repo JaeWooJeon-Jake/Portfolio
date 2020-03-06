@@ -49,7 +49,8 @@ $result = mysql_query($query, $connect);
 			
 				<tr>
 				<th  scope="row"><?echo $data['number']?></th>
-				<td><?echo $data['title']?></td>
+				<td>  <a href = "view.php?number=<?php echo $data['number']?>">
+                <?php echo $data['title']?>
 				<td><?echo $data['id']?></td>
 				<td><?echo $data['date']?></td>
 				<td><?echo $data['hit']?></td>
@@ -65,55 +66,47 @@ $result = mysql_query($query, $connect);
 
 
     
-     <button type="button" class="btn btn-primary" id="write" onclick="location.href='/write.php'">글쓰기</button>
+     <button type="button" class="btn btn-primary" id="write" onclick="location.href='/write/write.php'">글쓰기</button>
 	</br>
         </div>
 
-	<div class="page">
-	<ul class="pagination">
-		<?php
-		$pageNum = ceil($num/$list); // 총 페이지 3
+<?php
+$prev_page = $page-5;
+if($prev_page<=1){
+	$prev_page = 0;
+}
 
-		for ($p=0; $p<$pageNum; $p++) {
-			$num = $list * $p;
-			$b = $p+1;
-			?>
+$next_page = $page+5;
+if($next_page >= $num){
+	$next_page = $num-($num%$list);
+}
+?>  
+	
 
-			<li class="page-item">	
-			<?php
-		echo "<a href=$PHP_SELF?page=$num>[$b]</a>&nbsp&nbsp&nbsp";
-		?></li>
-		
-		<?php
-		}
-		?>
-		</ul>
-	</div>
-
-<nav aria-label="Page navigation example">
+<nav class="page" aria-label="Page navigation example">
   <ul class="pagination">
      <li class="page-item">
-      <a class="page-link" href="#" aria-label="Previous">
+      <a class="page-link" href="<?=$PHP_SELF?>?page=<?=$prev_page?>" aria-label="Previous">
         <span aria-hidden="true">&laquo;</span>
       </a>
     </li>
-    
-	<?php
-		$pageNum = ceil($num/$list); // 총 페이지 3
 
+	<?php
+		
+		$pageNum = ceil($num/$list); // 총 페이지 
 		for ($p=0; $p<$pageNum; $p++) {
-			$num = $list * $p;
-			$b = $p+1;
+			$num = $list * $p; //페이지
+			$b = $p+1; //버튼 번호
 			?>
 
-<li class="page-item"><a class="page-link" href="$PHP_SELF?page=$num"><? echo $b; ?></a></li>
+<li class="page-item"><a class="page-link" href="<?=$PHP_SELF?>?page=<?=$num?>"><? echo $b; ?></a></li>
    	
 	<?php
 		}
 		?>
 
     <li class="page-item">
-      <a class="page-link" href="#" aria-label="Next">
+      <a class="page-link" href="<?=$PHP_SELF?>?page=<?=$next_page?>" aria-label="Next">
         <span aria-hidden="true">&raquo;</span>
       </a>
     </li>

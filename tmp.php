@@ -68,21 +68,41 @@ $result = mysql_query($query, $connect);
      <button type="button" class="btn btn-primary" id="write" onclick="location.href='/write.php'">글쓰기</button>
 	</br>
         </div>
-<?php
-$pageNum = ceil($num/$list); // 총 페이지 3
 
-for ($p=0; $p<$pageNum; $p++) {
-	$num = $list * $p;
-	$b = $p+1;
-	echo "<a href=$PHP_SELF?page=$num>[$b]</a>";
 
-?>
-	
-   
-<?php
-}
-?>
+
+<nav class="page" aria-label="Page navigation example">
+  <ul class="pagination">
+     <li class="page-item">
+      <a class="page-link" href="#" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+      </a>
+    </li>
+    
+	<?php
+		$pageNum = ceil($num/$list); // 총 페이지 3
+
+		for ($p=0; $p<$pageNum; $p++) {
+			$num = $list * $p;
+			$b = $p+1;
+			?>
+
+<li class="page-item"><a class="page-link" href="<?=$PHP_SELF?>?page=<?=$num?>"><? echo $b; ?></a></li>
+   	
+	<?php
+		}
+		?>
+
+    <li class="page-item">
+      <a class="page-link" href="#" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+      </a>
+    </li>
+	</ul>
+</nav>
 
 
 </body>
 </html>
+
+ 

@@ -6,7 +6,7 @@
 }
 
 #write{
-	position: fixed;
+	position: relative;
 	left: 85%;
 	
 }
@@ -24,31 +24,33 @@ tbody{
 	 text-align: center;
 }
 
-html {
-  width: 100%;
-  height: 100%;
-}
-
 #user{
-	position:fixed;
+	position:relative;
 	left: 85%;
-	top: 5px;
+	top: -20px;
 }
 
 hr{
 	position:relative;
-	top:px;
+	top:-10px;
 }
 
 .logo{
 	position:relative;
 	left: 100px;
-	top: 10px;
+	top: 20px;
 	width:100px;
 	height:50px;
 }
 
 .page{
-	position: fixed;
-	left: 50%;
+	position: relative;
+	left: 45%;
+	top: 100px;
+}
+
+#search{
+	position: relative;
+	left: 75%;
+	
 }
