@@ -1,7 +1,8 @@
 <?php
-	include "../db/connect.php";
+	include $_SERVER['DOCUMENT_ROOT']."/db/connect.php";
 	header("Content-Type: text/html; charset=UTF-8");
-	$id = $_POST[name];
+
+	$id = $_SESSION['userid'];
 	$pw = $_POST[pw];
 	$title = $_POST[title];
 	$content = $_POST[content];
@@ -9,10 +10,8 @@
 
 	$URL = '../index.php';
 
-	$query = "insert into board (number, title, content, id, password, date, hit)
-				values(null, '$title', '$content', '$id', $pw, '$date', 0)";
+	$sql = mq("insert into board(id,pw,title,content,date,hit) values('".$id."','".$pw."','".$title."','".$content."','".$date."', 0)"); 
 
-	$result = $connect -> query($query);
 	if(result){
 ?>		
 		<script>

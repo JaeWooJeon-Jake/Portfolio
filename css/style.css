@@ -1,19 +1,29 @@
+html, body {
+	width: 100%; 
+	height: 100%;
+	overflow-x:hidden; 
+	overflow-y:auto;
+}
 .title{
 	position:relative;
-	top: 10px;
 	color:blue;
-	margin: 50px;
+	margin: 30px;
+	top: -20px;
 }
 
 #write{
 	position: relative;
-	left: 85%;
+	left: 75%;
+	top: -10px;
 	
 }
 
-table{
-
-	width: 500px;
+div.table{
+	position:relative;
+	top: -20px;
+	left: 17%;
+	width: 65%;
+	border: 1px solid black;
 }
 
 thead{
@@ -32,7 +42,7 @@ tbody{
 
 hr{
 	position:relative;
-	top:-10px;
+	top:-30px;
 }
 
 .logo{
@@ -46,11 +56,58 @@ hr{
 .page{
 	position: relative;
 	left: 45%;
-	top: 100px;
+	top: -15px;
 }
 
 #search{
 	position: relative;
 	left: 75%;
 	
+}
+
+div.search{
+	position: relative;
+	top:-20px;
+}
+
+.id_ck{
+	position: relative;
+	left:72%;
+	bottom: 45px;
+}
+
+.userid input{
+	 outline: none;
+  display: block;
+  background: rgba(0, 0, 0, 0.1);
+  width: 70%;
+  border: 0;
+  border-radius: 4px;
+  box-sizing: border-box;
+  padding: 12px 20px;
+  color: rgba(0, 0, 0, 0.6);
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: 500;
+  line-height: inherit;
+  -webkit-transition: 0.3s ease;
+          transition: 0.3s ease;
+}
+
+.userid label{
+	  display: block;
+  margin: 0 0 10px;
+  color: rgba(0, 0, 0, 0.6);
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1;
+  text-transform: uppercase;
+  letter-spacing: .2em;
+}
+
+div.find {
+	text-align:center; 
+	width:500px; 
+	margin-top:30px;
+	margin: 0 auto;
 }

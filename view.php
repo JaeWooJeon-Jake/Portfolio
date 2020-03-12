@@ -2,7 +2,7 @@
                 $connect = mysqli_connect('localhost', 'kyt9600', 'apvmfwodn12!', 'kyt9600');
                 $number = $_GET['number'];
                 session_start();
-                $query = "select title, content, date, hit, id from board where number =$number";
+                $query = "select title, content, date, hit, id from board where idx =$number";
                 $result = $connect->query($query);
                 $rows = mysqli_fetch_assoc($result);
         ?>
@@ -105,9 +105,9 @@ width: 500px;
         <!-- MODIFY & DELETE -->
         <div class="view_btn">
                 <button class="view_btn1" onclick="location.href='./index.php'">목록으로</button>
-                <button class="view_btn1" onclick="location.href='./edit.php?number=<?=$number?>&id=<?=$_SESSION['userid']?>'">수정</button>
+                <button class="view_btn1" onclick="location.href='write/modify.php?number=<?=$number?>&id=<?=$_SESSION['userid']?>'">수정</button>
  
-                <button class="view_btn1" onclick="location.href='./delete.php?number=<?=$number?>&id=<?=$_SESSION['userid']?>'">삭제</button>
+                <button class="view_btn1" onclick="location.href='/write/delete.php?number=<?=$number?>&id=<?=$_SESSION['userid']?>'">삭제</button>
         </div>
 		</body>
 </html>

@@ -1,32 +1,31 @@
 <?php
 	header("Content-Type: text/html; charset=UTF-8");
 
-	$connect=mysqli_connect("localhost", "kyt9600", "apvmfwodn12!", "kyt9600") or die("fail");
+	include $_SERVER['DOCUMENT_ROOT']."/db/connect.php";
+	
 
-	    $id=$_GET[id];
-        $pw=$_GET[pw];
-        $email=$_GET[email];
- 
-        $date = date('Y-m-d H:i:s');
+
+	    $id=$_POST['userid'];
+        $pw=password_hash($_POST['userpw'], PASSWORD_DEFAULT);
+		$pw2=password_hash($_POST['userpw2'], PASSWORD_DEFAULT);
+        $email=$_POST['email'];
+		$date = date('Y-m-d H:i:s');
+		$name = $_POST['username'];
+
+
+	$id_check = mq("select * from member where id='$id'");
+	$id_check = $id_check->fetch_array();
+	
+	if($id_check >= 1){
+		echo "<script>alert('아이디가 중복됩니다.'); history.back();</script>";
+	}else if($pw != $pw2){
+		echo "<script>alert('비밀번호가 다릅니다.'); history.back();</script>";
+	}else{
+	$sql = mq("insert into member(id,pw,date,name,email) values('$id', '$pw','$date','$name','$email')"); 
+	?>
+
+<meta charset="utf-8" />
+<script type="text/javascript">alert('회원가입이 완료되었습니다.');</script>
+<meta http-equiv="refresh" content="0 url=/">
+<?php } ?>
 		
-		//입력받은 데이터를 DB에 저장
-		$query = "insert into member(id,pw,date,permit,mail) values('$id', '$pw','$date',0,'$email')";
-
-		$result = $connect->query($query);
-
-		//저장이 됐다면 (result = true) 가입 완료
-		if($result){
-		?> <script>
-			alert('가입 되었습니다.');
-			location.replace("./login.php");
-			</script>
-		
-<?php }
-		else{
-?>				<script>
-					alert("fail");
-				</script>
-<?php }
-
-		mysqli_close($connect);
-?>

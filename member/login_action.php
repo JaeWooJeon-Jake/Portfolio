@@ -1,56 +1,26 @@
-<?php
-		header("Content-Type: text/html; charset=UTF-8");
-        session_start();
- 
-        $connect = mysqli_connect("localhost", "kyt9600", "apvmfwodn12!", "kyt9600") or die("fail");
- 
-        //입력 받은 id와 password
-        $id=$_GET['id'];
-        $pw=$_GET['pw'];
- 
-        //아이디가 있는지 검사
-        $query = "select * from member where id='$id'";
-        $result = $connect->query($query);
- 
- 
-        //아이디가 있다면 비밀번호 검사
-        if(mysqli_num_rows($result)==1) {
- 
-                $row=mysqli_fetch_assoc($result);
- 
-                //비밀번호가 맞다면 세션 생성
-                if($row['pw']==$pw){
-                        $_SESSION['userid']=$id;
-                        if(isset($_SESSION['userid'])){
-                        ?>      <script>
-                                        alert("로그인 되었습니다.");
-                                        location.replace("../index.php");
-                                </script>
-<?php
-                        }
-                        else{
-                                echo "session fail";
-                        }
-                }
- 
-                else {
-        ?>              <script>
-                                alert("아이디 혹은 비밀번호가 잘못되었습니다.");
-                                history.back();
-                        </script>
-        <?php
-                }
- 
-        }
- 
-                else{
-?>              <script>
-                        alert("아이디 혹은 비밀번호가 잘못되었습니다.");
-                        history.back();
-                </script>
-<?php
-        }
- 
- 
-?>
+<meta charset="utf-8" />
+<?php	
+	include $_SERVER['DOCUMENT_ROOT']."/db/connect.php";
 
+	//POST로 받아온 아이다와 비밀번호가 비었다면 알림창을 띄우고 전 페이지로 돌아갑니다.
+	if($_POST["id"] == "" || $_POST["pw"] == ""){
+		echo '<script> alert("아이디나 패스워드 입력하세요");history.back();</script>';
+	}else{
+
+	//password변수에 POST로 받아온 값을 저장하고 sql문으로 POST로 받아온 아이디값을 찾습니다.
+	$password = $_POST['pw'];
+	$sql = mq("select * from member where id='".$_POST['id']."'");
+	$member = $sql->fetch_array();
+	$hash_pw = $member['pw']; //$hash_pw에 POSt로 받아온 아이디열의 비밀번호를 저장합니다. 
+
+	if(password_verify($password, $hash_pw)) //만약 password변수와 hash_pw변수가 같다면 세션값을 저장하고 알림창을 띄운후 main.php파일로 넘어갑니다.
+	{
+		$_SESSION['userid'] = $member["id"];
+		$_SESSION['userpw'] = $member["pw"];
+
+		echo "<script>alert('로그인되었습니다.'); location.href='/index.php';</script>";
+	}else{ // 비밀번호가 같지 않다면 알림창을 띄우고 전 페이지로 돌아갑니다
+		echo "<script>alert('아이디 혹은 비밀번호를 확인하세요.'); history.back();</script>";
+	}
+} 
+?>

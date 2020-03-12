@@ -1,16 +1,15 @@
  <?php    
  include "db/connect.php";
  header("Content-Type: text/html; charset=UTF-8");
-
-                $id = $_GET[id];
-                $number = $_GET[number];
-                $query = "select title, content, date, id from board where number=$number";
-                $result = $connect->query($query);
-                $rows = mysqli_fetch_assoc($result);
+		
+		$id = $_GET['id'];
+        $bno = $_GET['number'];
+		$sql = mq("select title, content, date, id from board where number='$bno';");
+		$rows = $sql->fetch_array();
  
-                $title = $rows['title'];
-                $content = $rows['content'];
-                $usrid = $rows['id'];
+        $title = $rows['title'];
+        $content = $rows['content'];
+        $userid = $rows['id'];
  
                 session_start();
  
@@ -23,8 +22,9 @@
                                 location.replace("<?php echo $URL?>");
                         </script>
         <?php   }
-                else if($_SESSION['userid']==$usrid) {
+                else if($_SESSION['userid']==$userid) {
         ?>
+
         <form method = "get" action = "edit_action.php">
         <table  style="padding-top:50px" align = center width=700 border=0 cellpadding=2 >
                 <tr>

@@ -1,14 +1,14 @@
 <?php
-$connect = mysqli_connect('localhost', 'kyt9600', 'apvmfwodn12!', 'kyt9600') or die ('connect fail');
 
-/*
-$db_host = "localhost";
-$db_username = "kyt9600";
-$db_password = "apvmfwodn12!";
-$db_name = "kyt9600";
+	session_start();
+	header('Content-Type: text/html; charset=utf-8'); // utf-8인코딩
 
-mysql_connect($db_host,$db_username,$db_password) or die ('MySQL Not found // Could Not Connect.');
-mysql_select_db("$db_name") or die ("No Database found."); */
+	$db = new mysqli("localhost","kyt9600","apvmfwodn12!","kyt9600");
+	$db->set_charset("utf8");
 
-
+	function mq($sql)
+	{
+		global $db;
+		return $db->query($sql);
+	}
 ?>
