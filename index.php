@@ -10,8 +10,6 @@ $page = ($_GET['page'])?$_GET['page']:0; //시작 페이지
 $list = 10; // 화면에 보여줄 게시글 개수
 $block = 3; // 페이지 버튼 개수
 
-$query = "select * from board order by idx desc limit $page,$list";
-$result = mysql_query($query, $connect);
 
 
 ?>
@@ -44,16 +42,23 @@ $result = mysql_query($query, $connect);
 		
 		<tbody>
 		<?php 
-			while($data = mysql_fetch_array($result)){
+			$sql = mq("select * from board order by idx desc limit $page,$list"); // board테이블에있는 idx를 기준으로 내림차순해서 5개까지 표시
+            while($board = $sql->fetch_array())
+            {
+              $title=$board["title"]; 
+              if(strlen($title)>30)
+              { 
+                $title=str_replace($board["title"],mb_substr($board["title"],0,30,"utf-8")."...",$board["title"]); //title이 30을 넘어서면 ...표시
+              }
 		?>
 			
 				<tr>
-				<th scope="row"><?echo $data['idx']?></th>
-				<td><a href = "view.php?number=<?php echo $data['idx']?>">
-                <?php echo $data['title']?>
-				<td><?echo $data['id']?></td>
-				<td><?echo $data['date']?></td>
-				<td><?echo $data['hit']?></td>
+				<th scope="row"><?echo $board['idx']?></th>
+				<td><a href="/board/read.php?idx=<?php echo $board["idx"];?>">
+					<?php echo $board['title']?></a></td>
+				<td><?echo $board['name']?></td>
+				<td><?echo $board['date']?></td>
+				<td><?echo $board['hit']?></td>
 				</tr>
 		<?php
 		} 
@@ -67,7 +72,7 @@ $result = mysql_query($query, $connect);
 
 
     
-     <button type="button" class="btn btn-primary" id="write" onclick="location.href='/write/write2.php'">글쓰기</button>
+     <button type="button" class="btn btn-primary" id="write" onclick="location.href='/board/write.php'">글쓰기</button>
 	</br>
         </div>
 

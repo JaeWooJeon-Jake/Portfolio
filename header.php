@@ -16,7 +16,9 @@
 	if(isset($_SESSION['userid'])) {
 		
 		echo '<div id="user"><font size>'.$_SESSION['userid'];'</font>'?>님 안녕하세요
-		<button type="button" class="btn btn-primary" id="login" onclick="location.href='/member/logout.php'">로그아웃</button></div>
+		<button type="button" class="btn btn-primary" id="login" onclick="location.href='/member/logout.php'">로그아웃</button>
+		<button type="button" class="btn btn-primary"onclick="location.href='/member/member_edit.php'">
+		마이페이지</button></div>
 		</br><hr>
 	<?php
 	}

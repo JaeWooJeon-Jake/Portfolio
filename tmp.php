@@ -22,7 +22,7 @@ $result = mysql_query($query, $connect);
 <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 		<link rel="stylesheet" type="text/css" href="/css/style.css">
-		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+		
 </head>
  
 <body>
@@ -49,8 +49,8 @@ $result = mysql_query($query, $connect);
 			
 				<tr>
 				<th scope="row"><?echo $data['idx']?></th>
-				<td><a href = "view.php?number=<?php echo $data['idx']?>">
-                <?php echo $data['title']?>
+				<td><a href="/board/read.php?idx=<?php echo $board["idx"];?>">
+					<?php echo $data['title']?></a></td>
 				<td><?echo $data['id']?></td>
 				<td><?echo $data['date']?></td>
 				<td><?echo $data['hit']?></td>
@@ -67,7 +67,7 @@ $result = mysql_query($query, $connect);
 
 
     
-     <button type="button" class="btn btn-primary" id="write" onclick="location.href='/write/write2.php'">글쓰기</button>
+     <button type="button" class="btn btn-primary" id="write" onclick="location.href='/board/write.php'">글쓰기</button>
 	</br>
         </div>
 
