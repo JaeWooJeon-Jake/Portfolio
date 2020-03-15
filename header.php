@@ -15,7 +15,7 @@
 	
 	if(isset($_SESSION['userid'])) {
 		
-		echo '<div id="user"><font size>'.$_SESSION['userid'];'</font>'?>님 안녕하세요
+		echo '<div id="user"><font size>'.$_SESSION['username'];'</font>'?>님 안녕하세요
 		<button type="button" class="btn btn-primary" id="login" onclick="location.href='/member/logout.php'">로그아웃</button>
 		<button type="button" class="btn btn-primary"onclick="location.href='/member/member_edit.php'">
 		마이페이지</button></div>
@@ -31,9 +31,14 @@
 
 <div class="search">
 <nav class="navbar navbar-light bg-light">
-  <form class="form-inline"  id="search">
-    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+  <form class="form-inline"  id="search" action="/board/search_result.php" method="get">
+   <select name="catgo" class="form-control mr-sm-2">
+        <option value="title">제목</option>
+        <option value="name">작성자</option>
+        <option value="content">내용</option>
+      </select>
+    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="search">
+    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">검색</button>
   </form>
 </nav>
 </div>

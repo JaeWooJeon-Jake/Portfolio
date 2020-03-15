@@ -17,6 +17,7 @@
 	{
 		$_SESSION['userid'] = $member["id"];
 		$_SESSION['userpw'] = $member["pw"];
+		$_SESSION['username'] = $member["name"];
 
 		echo "<script>alert('로그인되었습니다.'); location.href='/index.php';</script>";
 	}else{ // 비밀번호가 같지 않다면 알림창을 띄우고 전 페이지로 돌아갑니다

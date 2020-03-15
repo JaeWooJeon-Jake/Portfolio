@@ -10,7 +10,6 @@
  	$id= $_SESSION['userid'];
 	$sql = mq("select * from member where id='".$id."'");
 	$member = $sql->fetch_array();
-	 echo $member[name];
 
                 session_start();
                 $URL = "/member/login.php";
@@ -23,9 +22,7 @@
                 </script>
         <?php
                 }
-
-				
-        ?>
+		?>
 
     <div id="board_write">
         <h1><a href="/">자유게시판</a></h1>

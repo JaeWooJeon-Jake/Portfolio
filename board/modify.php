@@ -3,8 +3,9 @@
    
 	$bno = $_GET['idx'];
 	$sql = mq("select * from board where idx='$bno';");
-	$board = $sql->fetch_array();        
- ?>
+	$board = $sql->fetch_array();   
+?>	
+	
 
 <!doctype html>
 <head>
@@ -14,7 +15,7 @@
 </head>
 
 <body>
-<?php
+		<?php
                 session_start();
                 $URL = "/member/login.php";
                 if(!isset($_SESSION['userid'])) {
@@ -25,8 +26,15 @@
                         location.replace("<?php echo $URL?>");
                 </script>
         <?php
-                }
+                }else if($_SESSION['userid']!= $board['id']){
         ?>
+				<script>
+					alert("권한이 없습니다.");
+					location.replace("/index.php");
+				</script>
+		<?php
+				}
+		?>
 
     <div id="board_write">
         <h1><a href="/">자유게시판</a></h1>

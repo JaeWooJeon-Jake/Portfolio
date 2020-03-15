@@ -10,6 +10,8 @@
 	$name = $_POST[name];
 
 	$URL = '../index.php';
+	
+	$mqq = mq("alter table board auto_increment =1");
 
 	$sql = mq("insert into board(id,pw,title,content,date,hit,name) values('".$id."','".$pw."','".$title."','".$content."','".$date."', 0,'".$name."')"); 
 
