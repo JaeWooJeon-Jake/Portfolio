@@ -33,8 +33,6 @@ border-top: 1px solid #444444;
 height: 500px;
 }
 .view_btn {
-width: 700px;
-height: 200px;
 text-align: center;
 margin: auto;
 margin-top: 50px;
@@ -64,4 +62,35 @@ width: 100px;
 }
 .view_comment {
 width: 500px;
+}
+
+.reply_view{
+	position:relative;
+	left:24%;
+	top: 30px;
+	width: 1000px;
+	background-color: #BBDEFB;
+}
+
+.co_form{
+	position:relative;
+	left:24%;
+	top:40px;
+}
+
+.reply_content{
+	width: 900px;
+position:relative;
+
+}
+
+.re_bt{
+	position:relative;
+	top: -20px;
+
+}
+
+.file{
+	position:relative;
+	left:24%;
 }

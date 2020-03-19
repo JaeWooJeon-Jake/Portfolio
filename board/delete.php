@@ -5,7 +5,6 @@
 	$sql = mq("select * from board where idx='".$bno."'"); /* 받아온 idx값을 선택 */
 	$board = $sql->fetch_array();
 
-	echo $board[name]; 
 	session_start();
 
                 $URL = "/member/login.php";

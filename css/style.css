@@ -47,7 +47,7 @@ hr{
 
 .logo{
 	position:relative;
-	left: 100px;
+	left: 18%;
 	top: 20px;
 	width:100px;
 	height:50px;
@@ -62,12 +62,11 @@ hr{
 #search{
 	position: relative;
 	left: 75%;
-	
 }
 
 div.search{
 	position: relative;
-	top:-20px;
+	
 }
 
 .id_ck{
@@ -111,3 +110,4 @@ div.find {
 	margin-top:30px;
 	margin: 0 auto;
 }
+

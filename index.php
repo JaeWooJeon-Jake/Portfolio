@@ -10,8 +10,9 @@ $page = ($_GET['page'])?$_GET['page']:0; //시작 페이지
 $list = 10; // 화면에 보여줄 게시글 개수
 $block = 3; // 페이지 버튼 개수
 
-
-
+$block_num = ceil($page/$block); // 현재 페이지 블록 구하기
+$block_start = (($block_num - 1) * $block) + 1; // 블록의  시작번호
+$block_end = $block_start + $block - 1; 
 ?>
 
 <!DOCTYPE html>
@@ -50,12 +51,15 @@ $block = 3; // 페이지 버튼 개수
               { 
                 $title=str_replace($board["title"],mb_substr($board["title"],0,30,"utf-8")."...",$board["title"]); //title이 30을 넘어서면 ...표시
               }
+
+			  $sql2 = mq("select * from comment where con_num='".$board['idx']."'"); //reply테이블에서 con_num이 board의 idx와 같은 것을 선택
+              $rep_count = mysqli_num_rows($sql2); //num_rows로 정수형태로 출력
 		?>
 			
 				<tr>
 				<th scope="row"><?echo $board['idx']?></th>
 				<td><a href="/board/read.php?idx=<?php echo $board["idx"];?>">
-					<?php echo $board['title']?></a></td>
+					<?php echo $board['title']?><span class="re_ct">[<?php echo $rep_count; ?>]</span></a></td>
 				<td><?echo $board['name']?></td>
 				<td><?echo $board['date']?></td>
 				<td><?echo $board['hit']?></td>

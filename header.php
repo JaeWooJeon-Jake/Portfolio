@@ -19,12 +19,12 @@
 		<button type="button" class="btn btn-primary" id="login" onclick="location.href='/member/logout.php'">로그아웃</button>
 		<button type="button" class="btn btn-primary"onclick="location.href='/member/member_edit.php'">
 		마이페이지</button></div>
-		</br><hr>
+		</br>
 	<?php
 	}
 	else{
 ?> <button type="button" class="btn btn-primary" id="user" onclick="location.href='/member/login.php'">로그인</button>
-	</br><hr>
+	</br>
 	<?php	
 		}
      ?>
